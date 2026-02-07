@@ -1,0 +1,433 @@
+<html>
+<head>  
+    <title>Hiv Igora</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="upper">
+        <h1 class="h1">bypewnie.py | (chapter 1)</h1>
+        <p class="text"></p>
+    </div>
+
+    <div class="downer">
+        <h2>Co wybierasz?</h2>
+        <button class="button"></button><br>
+        <button class="button"></button><br>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.button');
+        const text = document.querySelector('.text');
+        const h1 = document.querySelector('.h1');
+        var IsSelecting = false;
+        var checkAnwser = 0
+
+        var RecordedApteka = false;
+        var ZwyzywanoIge = 0;
+        var ZadzwoniloDoDamiana = false;
+        var AptekarkaZwyzywana = false;
+
+        async function print(string) {
+            const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+            for (let i = 0; i < string.length; i++) {
+                if (string[i] == "." || string[i] == "," || string[i] == "!" || string[i] == "?" || string[i] == ";" || string[i] == ":"){
+                    text.innerHTML += string[i];
+                    await wait(150);
+                }
+                else if (string[i] == "n" && string[i-1] == "\\"){
+                    text.innerHTML += "<br>";
+                    await wait(300);
+                }
+                else{
+                    text.innerHTML += string[i];
+                    await wait(50);
+                }                
+            }
+            await wait(150);
+            text.innerHTML += "<br>";
+
+        }
+
+        window.addEventListener('load', async () => {
+            setUpButtons();
+            document.querySelector('.downer').style.visibility = "hidden";
+            await menu(); // TO ZMIENIAN NA MENU
+        });
+
+
+        function setUpButtons(){
+            buttons[0].innerHTML = "1";
+            buttons[1].innerHTML = "2";
+            IsSelecting = true;
+        }
+
+        async function instrukcja(){
+            text.innerHTML = "";
+            h1.innerHTML = "bypewnie.py | (Instrukcja)"; 
+
+            const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+            await wait(150);
+            await print("Dobra sluchaj to jest instrukcja. Ogolnie to beda jakies dialogi i ty dostaniesz takie cos tu mozesz dokonac wyboru.")
+            await Opcje("Wybor 1", "Wybor 2")
+            await print("Pięknie! Dokonałeś wyboru. Każdy wybór w grze ma swoje konsekfencje oraz rozne dialogi i endingi.")
+            await print("Zakladam ze gra jest na jakies 10 minut ale by odblokowac kazdy ending i wszystko to pewnie godzine XD")   
+            await print("Dobra koniec instrukcji wracamy do menu co ty na to!")
+            await print("\n\n\nLADOWANIE MENU")
+            await wait(2000);
+            menu()
+        }
+
+        async function chapter4(){
+            text.innerHTML = "";
+            h1.innerHTML = "bypewnie.py | (Chapter 4)"; 
+
+            const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+            await wait(150);
+            
+            await print("PRZED DOMEM IGORA | 17:40 03.02.2026\n")
+            await print("Lukasz : Dobra jesteśmy przed domem igora");
+            await print("Iga : no to wchodzimy");
+            var opc = await Opcje("Wejdz do domu igora","Zwyzywaj ige");
+            if (opc == 1){
+                await print("Lukasz : Dobra wchodzimy");
+                await print("Iga : tak jest");
+            }
+            else if (opc == 2){
+                ZwyzywanoIge += 1;
+                await print("Lukasz : jebac cie iga kurwom jestes i cie pierdola ludzie w dupe");
+                await print("Iga : :(");
+                await print("Lukasz : dobra sorki juz przestaje ci wyzywac co dialog");
+                await print("Iga : xddd oki");
+                await print("Lukasz : Dobra wchodzimy");
+                await print("Iga : tak jest");
+            }
+            await print("Damian : spoko to dawajcie")
+            if (ZwyzywanoIge >= 4){
+                await print("");
+                await print("");
+                await print("KLATKA SCHODOWA | 17:50 03.02.2026\n");
+                await print("Lukasz : kurwa winda nie dziala");
+                await print("Iga : no to idziemy po schodach");
+                await print("Lukasz : ale ja nie chce isc po schodach kurwa jebana");
+                await print("Iga : MAM TEGO DOSC JEBANA KURWO");
+                await print("*IGA ZABIJA LUKASZA*");
+                await print("\n\nKONIEC GRY - ZABILES LUKASZA");
+                await print("");
+                await print("Dostales to zakonczenie bo zbyt wiele razy wyzywales ige");
+                return;
+            }
+            else if (AptekarkaZwyzywana == true){
+                await print("Lukasz : cześć igor musimy z tobą pogadać");
+                await print("Igor : o co chodzi?");
+                await print("Iga : chodzi o to ze my z damianem myslimy ze mozesz miec hiv");
+                await print("Igor : co ty pierdolisz przeciez nie mam hiv");
+                await print("Lukasz : no wlasnie dlatego musimy to sprawdzic");
+                await print("Igor : nie no pierdolicie sie jebniete jestescie");
+                await print("Iga : igor musisz to zrobic dla nas");
+                await print("Igor : dobra dobra spoko zrobie te testy hiv");
+                await print("*NAGLE WBIEGA APTEKARKA*")
+                await print("Aptekarka : Słyszałam wszystko co powiedzieliście i zgłaszam to na policję za nękanie i groźby");
+                await print("\n\nKONIEC GRY - ZGLOSZENIE NA POLICJE")
+                await print("");
+                await print("Dostales to zakonczenie bo zwyzywales aptekarke");
+                return;
+            }
+            else if (RecordedApteka == true){
+                await print("Lukasz : cześć igor musimy z tobą pogadać");
+                await print("Igor : widzialem film z apteki co wy tam kurwa wyprawiacie");
+                await print("Iga : no wlasnie o to chodzi igor musimy zrobic te testy hiv");
+                await print("Igor : co ty pierdolisz przeciez nie mam hiv");
+                await print("Lukasz : no wlasnie dlatego musimy to sprawdzic");
+                await print("Igor : nie no pierdolicie sie jebniete jestescie");
+                await print("Iga : igor musisz to zrobic dla nas");
+                await print("*WBIEGA WIECZOREK DO DOMU*");
+                await print("Wieczorek : Co tu sie kurwa dzieje? widzialem film w aptece");
+                await print("Lukasz : musisz po smaku rozpoznac czy igor ma hiv");
+                await print("Wieczorek : Dobra robimy testy");
+                await print("*PO TESTACH*");
+                await print("Wieczorek : no i co igor masz hiv czy nie?");
+                await print("Igor : no mam kurwa mam");
+                await print("Wieczorek : no to spoko bedziesz mial ruchane z nami bez gumy");
+                await print("Igor : dzieki stary ze mnie nie wyszedles");
+                await print("Iga, damian, lukasz : XD ruchamy sie teraz czy zachwile");
+                await print()
+                await print("\n\nKONIEC GRY - BAD ENDING MASOWY SEKS")
+                await print("");
+                await print("Dostales to zakonczenie bo nagrywałeś w aptece");
+                return;
+            }
+            else if (ZadzwoniloDoDamiana){
+                await ("Damian : ej lukasz pierdolimy tego igora idziemy z tad?");
+                await print("Lukasz : no chyba masz racje damian");
+                await print("\n\nKONIEC GRY - UCIECZKA Z DOMU IGORA")
+                await print("");
+                await print("Dostales to zakonczenie bo zadzwoniles do damiana");
+                return;
+            }
+
+            await print("Lukasz : cześć igor musimy z tobą pogadać");
+            await print("Igor : o co chodzi?");
+            await print("Iga : chodzi o to ze my z damianem myslimy ze mozesz miec hiv");
+            await print("Igor : co ty pierdolisz przeciez nie mam hiv");
+            await print("Lukasz : no wlasnie dlatego musimy to sprawdzic");
+            await print("Igor : nie no pierdolicie sie jebniete jestescie");
+            await print("Iga : igor musisz to zrobic dla nas");
+            await print("Igor : dobra dobra spoko zrobie te testy hiv");
+            
+            await print("\n\nKONIEC GRY - GOOD ENDING")
+            await print("");
+            await print("Dostales to zakonczenie bo nie zwyzywales igi i nie nagrywales w aptece i nie zwyzywales aptekarki");
+            
+
+        }
+
+        async function chapter3(){
+            text.innerHTML = "";
+            h1.innerHTML = "bypewnie.py | (Chapter 3)"; 
+
+            const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+            await wait(150);
+            
+            await print("\n\nM105 | 16:34 03.02.2026\n")
+            await print("Lukasz : Dzwon do damiana żeby poszedl do apteki po testy hiv")
+            await print("Iga : dobra zaraz dzwonie")
+            await print("IGA DZWONI DO DAMIANA")
+            await print("DAMIAN ODBIERA")
+            await print("Iga : cześć damian musisz iść do apteki po testy hiv")
+            await print("Damian : co kurwa?")
+            var opc = await Opcje("Wytłumacz mu sytuacje","Zwyzywaj ige z damianem");
+            if (opc == 1){
+                await print("Iga : bo igor moze mieć hiv i musimy to sprawdzic")
+                await print("Damian : nie no was pojebalo chyba nic nie kupuje xdd")
+                await print("Lukasz : Dobra my pojdziemy do apteki sami")
+            }
+            else if (opc == 2){
+                ZwyzywanoIge += 1;
+                await print("Lukasz : Iga ty kurwo jebana jebac cie szmato")
+                await print("Iga : ZA CO")
+                await print("Damian : jebac cie kurwa po nic nie ide ess")
+                await print("Iga : okpa")
+            }
+            await print("\nKONIEC TRASY BUSA")
+            await print("Lukasz : dobra idziemy do apteki")
+            await print("Iga : nagrac to? bedzie beka");
+            var opc = await Opcje("Nagrywać?","Nie nagrywać?");
+            if (opc == 1){
+                RecordedApteka = true;
+                await print("Lukasz : dawaj bedzie beka xddd");
+                await print("Iga : dobra nagrywam");
+            }
+            else if (opc == 2){
+                RecordedApteka = false;
+                await print("Lukasz : nie no pojebalo cie cringe");
+                await print("Iga : ok nie nagrywam");
+            }
+
+            await print("\n\nApteka | 16:54 03.02.2026\n")
+            await print("Lukasz : Dobra bierzemy te testy i spierdalamy stad");
+            await print("Iga : tak jest");
+            await print("SPRZEDAWCA APTEKI : Dzień dobry w czym moge pomóc?")
+            var opc = await Opcje("Popros o testy hiv","Zwyzywaj sprzedawce");
+            if (opc == 1){
+                await print("Lukasz : Poprosimy o dwa testy hiv");
+                await print("SPRZEDAWCA APTEKI : NA CO? nie mamy takich testow");
+                await print("Lukasz : Dziękujemy, do widzenia!");
+            }
+            else if (opc == 2){
+                AptekarkaZwyzywana = true;
+                await print("Lukasz : Ty kurwo jebana daj nam te testy na hiv pojebalo cie do reszty");
+                await print("SPRZEDAWCA APTEKI : Proszę się uspokoić albo wezwę policje");
+                await print("Iga : dobra bedziemy pokorni");
+                await print("SPRZEDAWCA APTEKI : Oczywiście proszę bardzo, ale testow z tego co widze nie ma.");
+                await print("Lukasz : Dziękujemy, do widzenia");
+            }
+
+            if (RecordedApteka){
+                await print("Lukasz : Dobra masz to nagrane?")
+                await print("Iga : tak xddd")
+                await print("Lukasz : To wysylaj na grupe XDDD")
+            }
+            else{
+                await print("Lukasz : Dobra ale wstyd chodz po damiana")
+                await print("Iga : wez mi nawet nie gadaj")
+            }
+
+            await print("\n\n\nLADOWANIE CHAPTERA")
+            await wait(2000);
+            await chapter4();
+        }
+
+        async function chapter2(){
+            text.innerHTML = "";
+            h1.innerHTML = "bypewnie.py | (Chapter 2)"; 
+
+            const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+            await wait(150);
+
+            await print("\n\n")
+            await print("DOM IGI | 16:20 03.02.2026")
+            await print("*Po rozmowie z damianem*")
+            await print("\n")
+            await print("Lukasz : czyli igor chyba serio ma ten hiv...")
+            await print("Iga : chyba musimy jechac do igora")
+            var opc = await Opcje("Pojedz do igora","Zwyzywaj Ige");
+            if (opc == 1){
+                await print("Iga : dobra sprawdze busy")
+                await print("Iga : mamy busa za chwile")
+                await print("Lukasz : Dobra dawaj biegniemy na busa")
+            }
+            else if (opc == 2){
+                ZwyzywanoIge += 1;
+                await print("Lukasz : ty kurwo jebana pojebalo cie do reszty")
+                await print("Iga : ok bede pokorna")
+                await print("Lukasz : dobra cho idziemy na busa moze masz racje")
+            }
+
+            wait(2000)
+            await print("\n\nPRZYSTANEK - KNURÓW | 16:25 03.02.2026\n")
+            await print("Lukasz : Iga ja ciagle o tym mysle...")
+            await print("Iga : no trudno o tym nie myslec wiesz?")
+            await print("Iga : wiesz ale przeplyneła mi myśl że może igor wie że ma ten hiv i o tym nie powiedzial")
+            var opc = await Opcje("Zgódź sie z Iga","Zwyzywaj ige");
+            if (opc == 1){
+                await print("Lukasz : ja też o tym myślałem i możesz mieć racje")
+                await print("Iga : no bo igor duzo rzeczy ukrywa przed nami")
+                await print("Lukasz : albo sie wstydzi poprostu")
+                await print("Iga : patrz bus jedzie, pogadamy o tym w busie")
+
+            }
+            else if (opc == 2){
+                ZwyzywanoIge += 1;
+                await print("Lukasz : ty szmato jebana cipo zwiętrzała jak możesz tak mysleć")
+                await print("Iga : ok ok przepraszam");
+                await print("Lukasz : zamknij cipe juz i nawet tak nie mysl")
+                await print("Lukasz : igor nie jest az tak skryty, powiedzial by nam")
+                await print("Iga : masz racje")
+                await print("Iga : patrz bus jedzie, pogadamy o tym w busie")
+            }
+            
+            
+            await print("\n\n\nLADOWANIE CHAPTERA")
+            await wait(2000);
+            await chapter3();
+        }
+
+        async function chapter1(){
+            text.innerHTML = "";
+            h1.innerHTML = "bypewnie.py | (Chapter 1)"; 
+
+            const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+            await wait(150);
+
+            await print("Igor kiedys byl malym chlopakiem ktory lubil seks i kobiety...")
+            await print("Pewnego razu igor wyruchal talaske ktora byla nosicielka hiv...")
+            await print("\n\n")
+            await print("DOM IGI | 16:00 03.02.2026")
+            await print("\n")
+            await print("Iga : Ostatnio z damianem myslalam o tym ze igor chyba ma hiv xd")
+            var opc = await Opcje("Zwyzywaj Ige","Wysłuchaj");
+            if (opc == 1){
+                ZwyzywanoIge += 1;
+                await print("Lukasz : Iga pojebalo cie do reszty kurwa jebnieta jestes.")
+                await print("Iga : NIE WYZYWAJ MNIE TYLKO POGADAJMY")
+                await print("Lukasz : ok gadamy")
+            }
+            else if (opc == 2){
+                await print("Lukasz : Iga no ostanio igor choruje kurcze ale nie wiem czy ma hiv")
+            }
+
+            await print("Iga : my z damianem ostatnio sprawdzalismy objawy hivu i pasuje wiekszosc")
+            await print("Lukasz : nie no nie mysle zeby igor mial hiv")
+            await print("Iga : czekaj musze zadzownic do damiana pogadamy se z nim o tym")
+            await print("IGA DZWONI DO DAMIANA")
+            await print("Iga : co za kutas nie odbiera")
+            
+            var opc = await Opcje("Zadzwon do damiana","Poczekaj");
+
+            if (opc == 1){
+                ZadzwoniloDoDamiana = true;
+                await print("Lukasz : dobra ja zadzownie do damiana jak odemnie odbierze to cie nie kocha")
+                await print("LUKASZ DZOWNI DO DAMIANA")
+                await print("DAMIAN ODBIERA")
+                await print("Iga : TY KURWO")
+            }
+            else if (opc == 2){
+                await print("Iga : Dobra dzownie do damiana jescze raz")
+                await print("IGA DZOWNI DO DAMIANA")
+                await print("DAMIAN ODBIERA")
+            }
+            await print("\n\n\nLADOWANIE CHAPTERA")
+            await wait(2000);
+            await chapter2();
+        }
+
+        async function menu(){
+            text.innerHTML = "";
+            h1.innerHTML = "bypewnie.py | (Menu)";
+
+            const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+            await wait(150);
+            
+            await print("Gra HIV Party Igora!");
+
+            await print("");
+            await print("Wybierz opcję:");
+            await print("1 - Zacznij gre");
+            await print("2 - Instrukcja");
+
+            IsSelecting = true;
+            document.querySelector('.downer').style.visibility = "visible";
+            while (checkAnwser == 0){
+                await wait(100);
+            }
+            await print("");
+            await print("Twoje wybory i tak nie maja znaczenia...");
+            if (checkAnwser == 1){
+                checkAnwser = 0;
+                await chapter1();
+            }
+            else if (checkAnwser == 2){
+                checkAnwser = 0;
+                await instrukcja();
+            }
+            else if (checkAnwser == 3){
+                checkAnwser = 0;
+                await zakoncz();
+            }
+        }
+
+        async function Opcje(opcja1,opcja2){
+            const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+            buttons[0].innerHTML = opcja1;
+            buttons[1].innerHTML = opcja2;
+            IsSelecting = true;
+            document.querySelector('.downer').style.visibility = "visible";
+            while (checkAnwser == 0){
+                await wait(100);
+            }
+            await print("Wybrałeś opcję : " + buttons[checkAnwser - 1].innerHTML);
+            await print("");
+            document.querySelector('.downer').style.visibility = "hidden";
+            checkAnwserTemp = checkAnwser;
+            checkAnwser = 0
+            return checkAnwserTemp;
+        }
+
+        buttons.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                if (IsSelecting == true) {
+                    checkAnwser = index + 1;
+                    console.log(`Kliknąłeś opcję ${index + 1}`);
+                    document.querySelector('.downer').style.visibility = "hidden";
+                }
+                else{
+                    checkAnwser = 0;
+                    return;
+                }
+                
+            });
+        });
+    </script>
+</body>
+</html>
